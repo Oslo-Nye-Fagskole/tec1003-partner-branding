@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/highsoft-design-tokens@latest/dist/css/tokens.css">
+  <style>
+    body { margin:0; font-family: "IBM Plex Sans", system-ui; background: #0f1118; color: rgba(255,255,255,.92); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px; display:grid; gap: 14px; }
+    .card { border:1px solid rgba(255,255,255,.10); border-radius: 16px; padding: 16px; background: rgba(255,255,255,.04); }
+    .btn { display:inline-block; padding: 10px 12px; border-radius: 12px; text-decoration:none; font-weight: 600; }
+    .btn.primary { background: var(--primitives-brand-700); color: white; }
+    .btn.ghost { border:1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.92); }
+    .badge { display:inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">Example UI</div>
+      <h1 style="margin:10px 0 6px;">Student portal module</h1>
+      <p style="margin:0 0 12px; color: rgba(255,255,255,.72);">Uses IBM Plex Sans + <code>highsoft-design-tokens</code>.</p>
+      <a class="btn primary" href="#">Primary action</a>
+      <a class="btn ghost" href="#" style="margin-left:8px;">Secondary</a>
+    </div>
+  </div>
+</body>
+</html>

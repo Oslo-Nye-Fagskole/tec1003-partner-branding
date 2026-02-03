@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Highcharts Mini Brand Kit</title>
+      <!-- IBM Plex Sans -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      <style>
+         :root{
+         --bg:#0f1118;
+         --panel: rgba(255,255,255,.04);
+         --border: rgba(255,255,255,.10);
+         --muted: rgba(255,255,255,.72);
+         --shadow: 0 14px 40px rgba(0,0,0,.35);
+         --radius: 16px;
+         --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+         --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+         }
+         *{ box-sizing:border-box; }
+         body{
+         margin:0;
+         font-family: var(--sans);
+         color: rgba(255,255,255,.92);
+         background: radial-gradient(1200px 900px at 30% 0%, #1a1f2f 0%, var(--bg) 60%);
+         line-height: 1.45;
+         }
+         a{ 
+          color: rgba(255,255,255,.92);
+        }
+         code, pre{ font-family: var(--mono); }
+         header{
+         max-width: 1180px;
+         margin: 0 auto;
+         padding: 22px 18px 10px;
+         display:flex;
+         align-items:flex-start;
+         justify-content:space-between;
+         gap: 24px;
+         flex-wrap:wrap;
+         }
+         .brand{
+         display:flex;
+         align-items:center;
+         justify-content:space-between;
+         width: 100%;
+         gap: 48px;
+         }
+         #logo-highcharts {
+         height: 32px;
+         }
+         #logo-highcharts.small {
+         height: 28px;
+         }
+         .brand img{ height: 34px; width:auto; display:block; }
+         h1{ margin:0; font-size: 36px; letter-spacing:.2px; }
+         .sub{ margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+         .wrap{ max-width: 1180px; margin: 0 auto; padding: 10px 18px 44px; }
+         .grid{
+         display:grid;
+         grid-template-columns: 1fr;
+         gap: 14px;
+         }
+         @media(min-width: 980px){
+         .grid{ grid-template-columns: 1.5fr .75fr; }
+         }
+         .card{
+         background: var(--panel);
+         border: 1px solid var(--border);
+         border-radius: var(--radius);
+         box-shadow: var(--shadow);
+         padding: 14px;
+         }
+         .card h2{
+         margin:0 0 10px;
+         font-size: 18px;
+         letter-spacing: .18px;
+         text-transform: uppercase;
+         }
+         .instructions h4,
+         .instructions p {
+         margin: 0;
+         }
+         .instructions {
+         margin-bottom: 14px;
+         padding: 24px;
+         border: 1px solid var(--border);
+         border-radius: 12px;
+         background-color: rgba(0,0,0,.16);
+         }
+         .topbar{
+         display:flex;
+         gap:10px;
+         flex-wrap:wrap;
+         align-items:center;
+         justify-content:flex-start;
+         margin-bottom: 10px;
+         }
+         .btn{
+         display:inline-flex;
+         gap: 8px;
+         align-items:center;
+         border: 1px solid var(--border);
+         background: rgba(255,255,255,.06);
+         color: rgba(255,255,255,.92);
+         border-radius: 12px;
+         padding: 9px 10px;
+         font-size: 12px;
+         cursor: pointer;
+         user-select:none;
+         }
+         .btn:hover{ background: rgba(255,255,255,.10); }
+         .status{
+         font-size: 14px;
+         color: var(--muted);
+         padding: 7px 10px;
+         border-radius: 999px;
+         border: 1px solid var(--border);
+         background: rgba(0,0,0,.16);
+         }
+         .row{
+         margin: 14px 0 0;
+         border-top: 1px solid var(--border);
+         padding-top: 14px;
+         }
+         .row:first-child{ border-top: 0; padding-top: 0; margin-top: 0; }
+         .rowhead{
+         display:flex;
+         justify-content:space-between;
+         gap: 12px;
+         flex-wrap:wrap;
+         align-items:baseline;
+         margin-bottom: 10px;
+         }
+         .rowhead .label{
+         font-size: 12px;
+         font-weight: 650;
+         text-transform: uppercase;
+         letter-spacing: .18px;
+         }
+         .rowhead .meta{
+         font-size: 12px;
+         color: var(--muted);
+         font-family: var(--mono);
+         }
+         .swatches{
+         display:grid;
+         grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+         gap: 10px;
+         }
+         .swatch{
+         border-radius: 14px;
+         overflow:hidden;
+         border: 1px solid var(--border);
+         background: rgba(0,0,0,.18);
+         display:grid;
+         grid-template-rows: 44px auto;
+         min-height: 88px;
+         }
+         .chip{ height:44px; }
+         .metaBlock{
+         padding: 10px;
+         display:grid;
+         gap: 7px;
+         }
+         .nameLine{
+         display:flex;
+         justify-content:space-between;
+         gap:10px;
+         font-size: 12px;
+         }
+         .nameLine code{
+         font-family: var(--mono);
+         color: rgba(255,255,255,.86);
+         font-size: 11px;
+         }
+         .pillRow{
+         display:grid;
+         grid-template-columns: 1fr;
+         gap: 8px;
+         }
+         .pill{
+         font-family: var(--mono);
+         font-size: 12px;
+         padding: 8px 10px;
+         border-radius: 12px;
+         border: 1px solid var(--border);
+         background: rgba(255,255,255,.04);
+         display:flex;
+         justify-content:space-between;
+         align-items:center;
+         cursor:pointer;
+         user-select:none;
+         }
+         .pill small{
+         font-family: var(--sans);
+         font-size: 11px;
+         color: var(--muted);
+         }
+         .kvs{ display:grid; gap: 8px; }
+         .kv{
+         display:flex;
+         justify-content:space-between;
+         gap:12px;
+         padding:10px;
+         border:1px solid var(--border);
+         border-radius: 12px;
+         background: rgba(0,0,0,.16);
+         }
+         .kv b{ font-size: 12px; }
+         .kv span{ font-size: 18px; color: rgba(255,255,255,.9); }
+         .kv span a {font-size: 14px; }
+         .logoGrid{
+         display:grid;
+         grid-template-columns: 1fr;
+         gap: 10px;
+         }
+         .logoCard{
+         border:1px solid var(--border);
+         border-radius: 14px;
+         padding: 10px;
+         background: rgba(0,0,0,.14);
+         display:grid;
+         gap: 10px;
+         }
+         .logoPreview{
+         border-radius: 12px;
+         border: 1px dashed rgba(255,255,255,.14);
+         padding: 14px;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         min-height: 64px;
+         }
+         .logoPreview.light{ background: #ffffff; }
+         .logoPreview.dark{ background: #0b0e16; }
+         .logoPreview img{ max-width: 100%; height: 28px; width:auto; }
+         .tiny{ font-size: 14px; color: var(--muted); }
+         ul{ margin: 8px 0 0 18px; padding:0; }
+         li{ margin: 6px 0; }
+         .toast{
+         position: fixed;
+         left: 50%;
+         bottom: 18px;
+         transform: translateX(-50%);
+         background: rgba(20, 24, 36, .92);
+         border: 1px solid var(--border);
+         padding: 10px 12px;
+         border-radius: 999px;
+         box-shadow: var(--shadow);
+         font-size: 13px;
+         opacity: 0;
+         pointer-events: none;
+         transition: opacity .18s ease, transform .18s ease;
+         color: rgba(255,255,255,.92);
+         }
+         .toast.show{ opacity:1; transform: translateX(-50%) translateY(-4px); }
+         .toast code{ font-family: var(--mono); }
+      </style>
+   </head>
+   <body>
+      <header>
+         <div class="brand">
+            <div>
+               <h1>Highcharts Mini Brand Kit</h1>
+            </div>
+            <svg version="1.1" id="logo-highcharts" aria-labelledby="logo-highcharts-title" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="10 10 384 65" xml:space="preserve" class="xkIiMq_logo">
+               <title id="logo-highcharts-title">Highcharts</title>
+               <g id="symbol" transform="translate(10, 10) scale(1)">
+                  <polygon fill="#8087E8" points="41.53900146484375,0 30.315000534057617,26.209999084472656 15.566999435424805,60.650997161865234 49.85900115966797,46.16499710083008 68.02299499511719,38.49300003051758 " id="svg_2" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#30426B" points="47.25799560546875,31.729999542236328 49.86000061035156,46.16499710083008 68.02400207519531,38.49300003051758 " id="svg_3" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#6699A1" points="41.53900146484375,0 47.25799560546875,31.730998992919922 68.02299499511719,38.49300003051758 " id="svg_4" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#78758C" points="47.25799560546875,31.729999542236328 68.02400207519531,38.49300003051758 30.31599998474121,26.208999633789062 15.566999435424805,60.650997161865234 49.86000061035156,46.16499710083008 " id="svg_5" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#A3EDBA" points="15.566999435424805,60.650997161865234 30.315000534057617,26.209999084472656 0,16.334999084472656 " id="svg_6" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#6699A1" points="49.86000061035156,46.16499710083008 53.185997009277344,64.6099967956543 68.02400207519531,38.49300003051758 " id="svg_7" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                  <polygon fill="#8087E8" points="41.53900146484375,0 30.315000534057617,26.209999084472656 47.25799560546875,31.730998992919922 " id="svg_8" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+               </g>
+               <g id="text-highcharts" transform="translate(108.02400207519531,31.291051292419436) scale(1)">
+                  <path fill="currentColor" d="M20.7189956665039,14.058000671386722 h-17.02 v9.77 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.07100067138672 c0,-1.037 0.8130000000000002,-1.852 1.85,-1.852 c1.036,0 1.8490000000000002,0.8130000000000002 1.8490000000000002,1.852 v8.436 h17.02 v-8.436 c0,-1.037 0.8140000000000002,-1.852 1.85,-1.852 c1.036,0 1.85,0.8130000000000002 1.85,1.852 v21.754 c0,1.037 -0.8140000000000002,1.851 -1.85,1.851 c-1.036,0 -1.85,-0.8130000000000002 -1.85,-1.851 V14.058000671386722 z" id="svg_2" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M39.21699566650392,23.825000671386718 c0,1.037 -0.8140000000000002,1.851 -1.852,1.851 s-1.852,-0.8130000000000002 -1.852,-1.851 V2.07100067138672 c0,-1.037 0.8140000000000002,-1.852 1.852,-1.852 s1.852,0.8130000000000002 1.852,1.852 V23.825000671386718 z" id="svg_3" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M66.3689956665039,14.724000671386719 c0,-1.036 0.8140000000000002,-1.774 1.852,-1.774 c1.034,0 1.852,0.8130000000000002 1.852,1.8490000000000002 v5.847 c0,0.4440000000000001 -0.22600000000000006,1.109 -0.5950000000000002,1.479 c-2.367,2.369 -5.549,3.773 -9.176,3.773 c-7.178,0 -12.949,-5.771 -12.949,-12.948 c0,-7.181 5.771,-12.949 12.949,-12.949 c3.6270000000000002,0 6.809,1.405 9.176,3.771 c0.7380000000000002,0.7400000000000002 0.7380000000000002,1.852 0,2.592 c-0.7410000000000002,0.7380000000000002 -1.9220000000000002,0.8130000000000002 -2.6630000000000003,0.07200000000000002 c-1.702,-1.6990000000000005 -3.923,-2.736 -6.513,-2.736 c-5.104,0 -9.249,4.144 -9.249,9.25 c0,5.104 4.146,9.25 9.249,9.25 c2.367,0 4.441,-0.8130000000000002 6.067,-2.222 V14.724000671386719 z" id="svg_4" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M100.40599566650391,14.058000671386722 h-17.019 v9.77 c0,1.037 -0.8170000000000002,1.851 -1.852,1.851 c-1.037,0 -1.8490000000000002,-0.8130000000000002 -1.8490000000000002,-1.851 V2.07100067138672 c0,-1.037 0.812,-1.852 1.8490000000000002,-1.852 c1.034,0 1.852,0.8130000000000002 1.852,1.852 v8.436 h17.019 v-8.436 c0,-1.037 0.8130000000000002,-1.852 1.8490000000000002,-1.852 c1.037,0 1.852,0.8130000000000002 1.852,1.852 v21.754 c0,1.037 -0.8130000000000002,1.851 -1.852,1.851 c-1.033,0 -1.8490000000000002,-0.8130000000000002 -1.8490000000000002,-1.851 V14.058000671386722 z" id="svg_5" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M125.19199566650391,25.898000671386725 c-7.182,0 -12.949,-5.771 -12.949,-12.948 c0,-7.181 5.77,-12.949 12.949,-12.949 c3.6270000000000002,0 6.809,1.405 9.176,3.771 c0.7380000000000002,0.7400000000000002 0.7380000000000002,1.852 0,2.592 c-0.7410000000000002,0.7380000000000002 -1.925,0.8130000000000002 -2.6660000000000004,0.07200000000000002 c-1.6990000000000005,-1.6990000000000005 -3.92,-2.736 -6.51,-2.736 c-5.106,0 -9.249,4.144 -9.249,9.25 c0,5.104 4.143,9.25 9.249,9.25 c2.59,0 4.884,-0.9620000000000002 6.586,-2.664 c0.7400000000000002,-0.7410000000000002 1.8490000000000002,-0.7410000000000002 2.59,0 c0.7380000000000002,0.7380000000000002 0.7380000000000002,1.85 0,2.589 C131.9999956665039,24.49200067138672 128.81799566650392,25.898000671386725 125.19199566650391,25.898000671386725 z" id="svg_6" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M163.81299566650392,14.058000671386722 h-17.02 v9.77 c0,1.037 -0.8130000000000002,1.851 -1.852,1.851 c-1.034,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.07100067138672 c0,-1.037 0.8130000000000002,-1.852 1.85,-1.852 c1.035,0 1.852,0.8130000000000002 1.852,1.852 v8.436 h17.02 v-8.436 c0,-1.037 0.8130000000000002,-1.852 1.8530000000000002,-1.852 c1.034,0 1.8490000000000002,0.8130000000000002 1.8490000000000002,1.852 v21.754 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.8530000000000002,-0.8130000000000002 -1.8530000000000002,-1.851 V14.058000671386722 z" id="svg_7" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M191.0019956665039,1.8490006713867189 l10.507,20.646 c0.22300000000000006,0.4430000000000001 0.4450000000000001,1.036 0.4450000000000001,1.554 c0,1.036 -0.6680000000000003,1.6280000000000001 -1.702,1.6280000000000001 c-0.7410000000000002,0 -1.481,-0.22200000000000006 -2.001,-1.258 l-3.253,-6.438 h-13.547 l-3.183,6.438 c-0.517,1.036 -1.256,1.258 -1.994,1.258 c-1.037,0 -1.702,-0.5930000000000002 -1.702,-1.6280000000000001 c0,-0.519 0.22000000000000006,-1.109 0.4420000000000001,-1.554 l10.506,-20.646 c0.6680000000000003,-1.405 2.002,-1.6280000000000001 2.74,-1.6280000000000001 C189.0039956665039,0.22100067138671875 190.33399566650388,0.4420006713867153 191.0019956665039,1.8490006713867189 zM183.22899566650392,14.429000671386717 h9.988 l-4.957,-9.99 L183.22899566650392,14.429000671386717 z" id="svg_8" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M222.4029956665039,0.369000671386722 c4.441,0 8.064,3.255 8.064,7.694 c0,3.923 -2.813,6.884 -6.511,7.549 l6.731,7.104 c0.6640000000000003,0.6660000000000003 0.8890000000000002,1.85 0.14600000000000005,2.516 c-0.7360000000000002,0.7410000000000002 -2.145,0.521 -2.886,-0.2960000000000001 l-8.729,-9.176 h-6.511 v8.142 c0,1.034 -0.8150000000000002,1.774 -1.854,1.774 c-1.033,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.2190006713867163 c0,-1.035 0.8140000000000002,-1.85 1.85,-1.85 H222.4029956665039 zM212.71199566650392,3.9210006713867216 v8.288 h9.691 c2.59,0 4.367,-1.776 4.367,-4.146 c0,-2.365 -1.7770000000000001,-4.144 -4.367,-4.144 L212.71199566650392,3.9210006713867216 L212.71199566650392,3.9210006713867216 z" id="svg_9" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M247.29099566650393,3.9210006713867216 h-9.249 c-1.033,0 -1.8490000000000002,-0.7400000000000002 -1.8490000000000002,-1.776 c0,-1.034 0.8130000000000002,-1.7730000000000001 1.8490000000000002,-1.7730000000000001 h22.201 c1.037,0 1.852,0.7400000000000002 1.852,1.7730000000000001 c0,1.037 -0.8130000000000002,1.776 -1.852,1.776 h-9.249 V23.826000671386723 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.854,-0.8130000000000002 -1.854,-1.851 V3.9210006713867216 z" id="svg_10" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <path fill="currentColor" d="M270.9679956665039,10.359000671386724 c0,-9.25 5.698,-10.359 9.99,-10.359 c1.035,0 1.85,0.8130000000000002 1.85,1.85 c0,1.036 -0.8130000000000002,1.851 -1.85,1.851 c-3.479,0 -6.29,0.7380000000000002 -6.29,6.66 v5.18 c0,9.25 -5.698,10.358 -9.989,10.358 c-1.035,0 -1.85,-0.8130000000000002 -1.85,-1.85 s0.8140000000000002,-1.85 1.85,-1.85 c3.479,0 6.289,-0.7400000000000002 6.289,-6.66 V10.359000671386724 z" id="svg_11" stroke-width="0px" stroke="#f0f0f0"></path>
+                  <g transform="translate(280, 20) scale(0.03)">
+                     <circle cx="100" cy="100" r="88.5" fill="none" stroke="currentColor" stroke-width="20"></circle>
+                     <path d="M94.6 92C100.1 92 104.1 90.9 106.5 88.8C108.9 86.8 110.2 83.4 110.2 78.6C110.2 73.9 108.9 70.6 106.5 68.5C104.1 66.5 100.1 65.5 94.6 65.5L83.4 65.5L83.4 92L94.6 92M83.4 110.3L83.4 149.3L56.8 149.3L56.8 46.2L97.4 46.2C111 46.2 120.9 48.5 127.2 53.1C133.6 57.6 136.7 64.8 136.7 74.7C136.7 81.5 135.1 87.1 131.8 91.5C128.5 95.8 123.6 99.1 116.9 101.1C120.6 102 123.8 103.9 126.7 106.8C129.6 109.7 132.5 114.1 135.4 120.1L149.9 149.3L121.6 149.3L109 123.7C106.5 118.6 103.9 115 101.3 113.2C98.7 111.3 95.2 110.3 90.9 110.3L83.4 110.3" stroke-width="0px" stroke="#f0f0f0" fill="currentColor"></path>
+                  </g>
+               </g>
+            </svg>
+         </div>
+      </header>
+      <div class="wrap">
+         <div class="grid">
+            <section class="card">
+               <div class="topbar">
+                  <span class="status" id="status">Loading tokens…</span>
+                  <!-- <button class="btn" id="copy-all-css">Copy primitives as CSS</button> -->
+               </div>
+               <div class="instructions">
+                  <h4>Need the full token set?</h4>
+                  <ul>
+                     <li>
+                        <p class="tiny">
+                           You can get the full set of design tokens <a href="https://www.npmjs.com/package/highsoft-design-tokens" target="_blank" >from npm</a>. <br>
+                           This includes spacing, typography, shadows, borders, and more, all in multiple formats (CSS, SCSS, JSON, JS).
+                        </p>
+                     </li>
+                     <li>
+                        <p class="tiny">For example usage, visit <a href="https://www.highcharts.com" target="_blank">highcharts.com</a>
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <h2>🟡 Colors</h2>
+                <p class="tiny">Primary brand colors: Neutral, Brand and Success. Use Attention and Danger for warnings/alerts.</p>
+               <div id="palette"></div>
+               <p class="tiny" id="token-meta"></p>
+            </section>
+            <aside class="card">
+               <h2>🟡 Typography</h2>
+               <div class="kvs">
+                  <div class="kv"><b>Font</b> <span>IBM Plex Sans</span></div>
+               </div>
+               <p class="tiny"><a href="https://fonts.google.com/specimen/IBM+Plex+Sans" target="_blank">Download/Embed from Google Fonts</a></p>
+               <div class="row"></div>
+               <h2>🟡 Logos</h2>
+               <p class="tiny" style="margin-top:10px;">
+                  Need other variants (symbol-only, square, outlined, PDF, etc.)? Use:
+                  <a href="https://www.highcharts.com/logolab/" target="_blank" rel="noreferrer">Highcharts Logo Lab</a>
+               </p>
+               <div class="logoGrid">
+                  <div class="logoCard">
+                     <div class="tiny"><b>SVG</b></div>
+                     <div class="logoPreview dark">
+                        <svg version="1.1" id="logo-highcharts" class="small" aria-labelledby="logo-highcharts-title" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="10 10 384 65" xml:space="preserve" class="xkIiMq_logo">
+                           <title id="logo-highcharts-title">Highcharts</title>
+                           <g id="symbol" transform="translate(10, 10) scale(1)">
+                              <polygon fill="#8087E8" points="41.53900146484375,0 30.315000534057617,26.209999084472656 15.566999435424805,60.650997161865234 49.85900115966797,46.16499710083008 68.02299499511719,38.49300003051758 " id="svg_2" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#30426B" points="47.25799560546875,31.729999542236328 49.86000061035156,46.16499710083008 68.02400207519531,38.49300003051758 " id="svg_3" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#6699A1" points="41.53900146484375,0 47.25799560546875,31.730998992919922 68.02299499511719,38.49300003051758 " id="svg_4" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#78758C" points="47.25799560546875,31.729999542236328 68.02400207519531,38.49300003051758 30.31599998474121,26.208999633789062 15.566999435424805,60.650997161865234 49.86000061035156,46.16499710083008 " id="svg_5" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#A3EDBA" points="15.566999435424805,60.650997161865234 30.315000534057617,26.209999084472656 0,16.334999084472656 " id="svg_6" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#6699A1" points="49.86000061035156,46.16499710083008 53.185997009277344,64.6099967956543 68.02400207519531,38.49300003051758 " id="svg_7" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                              <polygon fill="#8087E8" points="41.53900146484375,0 30.315000534057617,26.209999084472656 47.25799560546875,31.730998992919922 " id="svg_8" stroke-width="0" stroke="#f0f0f0" fill-opacity="1" stroke-linejoin="round"></polygon>
+                           </g>
+                           <g id="text-highcharts" transform="translate(108.02400207519531,31.291051292419436) scale(1)">
+                              <path fill="currentColor" d="M20.7189956665039,14.058000671386722 h-17.02 v9.77 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.07100067138672 c0,-1.037 0.8130000000000002,-1.852 1.85,-1.852 c1.036,0 1.8490000000000002,0.8130000000000002 1.8490000000000002,1.852 v8.436 h17.02 v-8.436 c0,-1.037 0.8140000000000002,-1.852 1.85,-1.852 c1.036,0 1.85,0.8130000000000002 1.85,1.852 v21.754 c0,1.037 -0.8140000000000002,1.851 -1.85,1.851 c-1.036,0 -1.85,-0.8130000000000002 -1.85,-1.851 V14.058000671386722 z" id="svg_2" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M39.21699566650392,23.825000671386718 c0,1.037 -0.8140000000000002,1.851 -1.852,1.851 s-1.852,-0.8130000000000002 -1.852,-1.851 V2.07100067138672 c0,-1.037 0.8140000000000002,-1.852 1.852,-1.852 s1.852,0.8130000000000002 1.852,1.852 V23.825000671386718 z" id="svg_3" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M66.3689956665039,14.724000671386719 c0,-1.036 0.8140000000000002,-1.774 1.852,-1.774 c1.034,0 1.852,0.8130000000000002 1.852,1.8490000000000002 v5.847 c0,0.4440000000000001 -0.22600000000000006,1.109 -0.5950000000000002,1.479 c-2.367,2.369 -5.549,3.773 -9.176,3.773 c-7.178,0 -12.949,-5.771 -12.949,-12.948 c0,-7.181 5.771,-12.949 12.949,-12.949 c3.6270000000000002,0 6.809,1.405 9.176,3.771 c0.7380000000000002,0.7400000000000002 0.7380000000000002,1.852 0,2.592 c-0.7410000000000002,0.7380000000000002 -1.9220000000000002,0.8130000000000002 -2.6630000000000003,0.07200000000000002 c-1.702,-1.6990000000000005 -3.923,-2.736 -6.513,-2.736 c-5.104,0 -9.249,4.144 -9.249,9.25 c0,5.104 4.146,9.25 9.249,9.25 c2.367,0 4.441,-0.8130000000000002 6.067,-2.222 V14.724000671386719 z" id="svg_4" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M100.40599566650391,14.058000671386722 h-17.019 v9.77 c0,1.037 -0.8170000000000002,1.851 -1.852,1.851 c-1.037,0 -1.8490000000000002,-0.8130000000000002 -1.8490000000000002,-1.851 V2.07100067138672 c0,-1.037 0.812,-1.852 1.8490000000000002,-1.852 c1.034,0 1.852,0.8130000000000002 1.852,1.852 v8.436 h17.019 v-8.436 c0,-1.037 0.8130000000000002,-1.852 1.8490000000000002,-1.852 c1.037,0 1.852,0.8130000000000002 1.852,1.852 v21.754 c0,1.037 -0.8130000000000002,1.851 -1.852,1.851 c-1.033,0 -1.8490000000000002,-0.8130000000000002 -1.8490000000000002,-1.851 V14.058000671386722 z" id="svg_5" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M125.19199566650391,25.898000671386725 c-7.182,0 -12.949,-5.771 -12.949,-12.948 c0,-7.181 5.77,-12.949 12.949,-12.949 c3.6270000000000002,0 6.809,1.405 9.176,3.771 c0.7380000000000002,0.7400000000000002 0.7380000000000002,1.852 0,2.592 c-0.7410000000000002,0.7380000000000002 -1.925,0.8130000000000002 -2.6660000000000004,0.07200000000000002 c-1.6990000000000005,-1.6990000000000005 -3.92,-2.736 -6.51,-2.736 c-5.106,0 -9.249,4.144 -9.249,9.25 c0,5.104 4.143,9.25 9.249,9.25 c2.59,0 4.884,-0.9620000000000002 6.586,-2.664 c0.7400000000000002,-0.7410000000000002 1.8490000000000002,-0.7410000000000002 2.59,0 c0.7380000000000002,0.7380000000000002 0.7380000000000002,1.85 0,2.589 C131.9999956665039,24.49200067138672 128.81799566650392,25.898000671386725 125.19199566650391,25.898000671386725 z" id="svg_6" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M163.81299566650392,14.058000671386722 h-17.02 v9.77 c0,1.037 -0.8130000000000002,1.851 -1.852,1.851 c-1.034,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.07100067138672 c0,-1.037 0.8130000000000002,-1.852 1.85,-1.852 c1.035,0 1.852,0.8130000000000002 1.852,1.852 v8.436 h17.02 v-8.436 c0,-1.037 0.8130000000000002,-1.852 1.8530000000000002,-1.852 c1.034,0 1.8490000000000002,0.8130000000000002 1.8490000000000002,1.852 v21.754 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.8530000000000002,-0.8130000000000002 -1.8530000000000002,-1.851 V14.058000671386722 z" id="svg_7" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M191.0019956665039,1.8490006713867189 l10.507,20.646 c0.22300000000000006,0.4430000000000001 0.4450000000000001,1.036 0.4450000000000001,1.554 c0,1.036 -0.6680000000000003,1.6280000000000001 -1.702,1.6280000000000001 c-0.7410000000000002,0 -1.481,-0.22200000000000006 -2.001,-1.258 l-3.253,-6.438 h-13.547 l-3.183,6.438 c-0.517,1.036 -1.256,1.258 -1.994,1.258 c-1.037,0 -1.702,-0.5930000000000002 -1.702,-1.6280000000000001 c0,-0.519 0.22000000000000006,-1.109 0.4420000000000001,-1.554 l10.506,-20.646 c0.6680000000000003,-1.405 2.002,-1.6280000000000001 2.74,-1.6280000000000001 C189.0039956665039,0.22100067138671875 190.33399566650388,0.4420006713867153 191.0019956665039,1.8490006713867189 zM183.22899566650392,14.429000671386717 h9.988 l-4.957,-9.99 L183.22899566650392,14.429000671386717 z" id="svg_8" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M222.4029956665039,0.369000671386722 c4.441,0 8.064,3.255 8.064,7.694 c0,3.923 -2.813,6.884 -6.511,7.549 l6.731,7.104 c0.6640000000000003,0.6660000000000003 0.8890000000000002,1.85 0.14600000000000005,2.516 c-0.7360000000000002,0.7410000000000002 -2.145,0.521 -2.886,-0.2960000000000001 l-8.729,-9.176 h-6.511 v8.142 c0,1.034 -0.8150000000000002,1.774 -1.854,1.774 c-1.033,0 -1.85,-0.8130000000000002 -1.85,-1.851 V2.2190006713867163 c0,-1.035 0.8140000000000002,-1.85 1.85,-1.85 H222.4029956665039 zM212.71199566650392,3.9210006713867216 v8.288 h9.691 c2.59,0 4.367,-1.776 4.367,-4.146 c0,-2.365 -1.7770000000000001,-4.144 -4.367,-4.144 L212.71199566650392,3.9210006713867216 L212.71199566650392,3.9210006713867216 z" id="svg_9" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M247.29099566650393,3.9210006713867216 h-9.249 c-1.033,0 -1.8490000000000002,-0.7400000000000002 -1.8490000000000002,-1.776 c0,-1.034 0.8130000000000002,-1.7730000000000001 1.8490000000000002,-1.7730000000000001 h22.201 c1.037,0 1.852,0.7400000000000002 1.852,1.7730000000000001 c0,1.037 -0.8130000000000002,1.776 -1.852,1.776 h-9.249 V23.826000671386723 c0,1.037 -0.8130000000000002,1.851 -1.8490000000000002,1.851 c-1.037,0 -1.854,-0.8130000000000002 -1.854,-1.851 V3.9210006713867216 z" id="svg_10" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <path fill="currentColor" d="M270.9679956665039,10.359000671386724 c0,-9.25 5.698,-10.359 9.99,-10.359 c1.035,0 1.85,0.8130000000000002 1.85,1.85 c0,1.036 -0.8130000000000002,1.851 -1.85,1.851 c-3.479,0 -6.29,0.7380000000000002 -6.29,6.66 v5.18 c0,9.25 -5.698,10.358 -9.989,10.358 c-1.035,0 -1.85,-0.8130000000000002 -1.85,-1.85 s0.8140000000000002,-1.85 1.85,-1.85 c3.479,0 6.289,-0.7400000000000002 6.289,-6.66 V10.359000671386724 z" id="svg_11" stroke-width="0px" stroke="#f0f0f0"></path>
+                              <g transform="translate(280, 20) scale(0.03)">
+                                 <circle cx="100" cy="100" r="88.5" fill="none" stroke="currentColor" stroke-width="20"></circle>
+                                 <path d="M94.6 92C100.1 92 104.1 90.9 106.5 88.8C108.9 86.8 110.2 83.4 110.2 78.6C110.2 73.9 108.9 70.6 106.5 68.5C104.1 66.5 100.1 65.5 94.6 65.5L83.4 65.5L83.4 92L94.6 92M83.4 110.3L83.4 149.3L56.8 149.3L56.8 46.2L97.4 46.2C111 46.2 120.9 48.5 127.2 53.1C133.6 57.6 136.7 64.8 136.7 74.7C136.7 81.5 135.1 87.1 131.8 91.5C128.5 95.8 123.6 99.1 116.9 101.1C120.6 102 123.8 103.9 126.7 106.8C129.6 109.7 132.5 114.1 135.4 120.1L149.9 149.3L121.6 149.3L109 123.7C106.5 118.6 103.9 115 101.3 113.2C98.7 111.3 95.2 110.3 90.9 110.3L83.4 110.3" stroke-width="0px" stroke="#f0f0f0" fill="currentColor"></path>
+                              </g>
+                           </g>
+                        </svg>
+                     </div>
+                     <div class="tiny">File: <code><a href="assets/logos/highcharts-logo.svg" target="_blank">assets/logos/highcharts-logo.svg</a></code></div>
+                  </div>
+                  <div class="logoCard">
+                     <div class="tiny"><b>PNG for dark backgrounds</b></div>
+                     <div class="logoPreview dark">
+                        <img src="assets/logos/highcharts-logo-dark.png" alt="Highcharts logo (light PNG)">
+                     </div>
+                     <div class="tiny">File: <code><a href="assets/logos/highcharts-logo-dark.png" target="_blank">assets/logos/highcharts-logo-dark.png</a></code></div>
+                  </div>
+                  <div class="logoCard">
+                     <div class="tiny"><b>PNG for light backgrounds</b></div>
+                     <div class="logoPreview light">
+                        <img src="assets/logos/highcharts-logo-light.png" alt="Highcharts logo (dark PNG)">
+                     </div>
+                     <div class="tiny">File: <code><a href="assets/logos/highcharts-logo-light.png" target="_blank">assets/logos/highcharts-logo-light.png</a></code></div>
+                  </div>
+               </div>
+               <div class="row"></div>
+               <h2>🟡 Tone of voice</h2>
+               <h3>Teach. Don't sell.</h3>
+               <ul>
+                  <li><b>Honest:</b> clear, low-jargon, transparent; avoid hype.</li>
+                  <li><b>Friendly:</b> plain language, conversational, positive; low-key humor is OK.</li>
+                  <li><b>Confident:</b> active voice; be direct; enthusiastic but not salesy.</li>
+               </ul>
+               <p class="tiny" style="margin-top:10px;">
+                  Full reference: <code><a href="tone-of-voice-tactics.pdf" target="_blank" rel="noreferrer">tone-of-voice-tactics.pdf</a></code>
+               </p>
+            </aside>
+         </div>
+      </div>
+      <div class="toast" id="toast"></div>
+      <script>
+         const GROUPS = [
+           { key: "neutral",   label: "Neutral",   steps: [0,25,50,100,200,300,400,500,600,700,750,800,900,1000] },
+           { key: "brand",     label: "Brand",     steps: [50,100,200,300,400,500,600,700,800,900,1000] },
+           { key: "success",   label: "Success",   steps: [50,100,200,300,400,500,600,700,800,900,1000] },
+           { key: "attention", label: "Attention", steps: [50,100,200,300,400,500,600,700,800,900,1000] },
+           { key: "danger",    label: "Danger",    steps: [50,100,200,300,400,500,600,700,800,900,1000] },
+         ];
+         
+         // Variable naming (per your tokens naming convention)
+         const varName = (group, step) => `--primitives-${group}-${step}`;
+         
+         const statusEl = document.getElementById("status");
+         const paletteEl = document.getElementById("palette");
+         const metaEl = document.getElementById("token-meta");
+         const toast = document.getElementById("toast");
+         
+         let toastTimer = null;
+         function showToast(msg) {
+           toast.innerHTML = msg;
+           toast.classList.add("show");
+           clearTimeout(toastTimer);
+           toastTimer = setTimeout(() => toast.classList.remove("show"), 1200);
+         }
+         function escapeHtml(s) {
+           return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+         }
+         async function copyToClipboard(text) {
+           try {
+             await navigator.clipboard.writeText(text);
+             showToast(`Copied <code>${escapeHtml(text)}</code>`);
+           } catch (e) {
+             const ta = document.createElement("textarea");
+             ta.value = text;
+             document.body.appendChild(ta);
+             ta.select();
+             document.execCommand("copy");
+             ta.remove();
+             showToast(`Copied <code>${escapeHtml(text)}</code>`);
+           }
+         }
+         function getCssVar(name) {
+           return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+         }
+         
+         function renderPalette(loadedUrl) {
+           paletteEl.innerHTML = "";
+           let missingCount = 0;
+         
+           GROUPS.forEach((g) => {
+             const row = document.createElement("div");
+             row.className = "row";
+             row.innerHTML = `
+               <div class="rowhead">
+                 <div class="label">${g.label}</div>
+                 <div class="meta">${g.steps.join(", ")}</div>
+               </div>
+               <div class="swatches"></div>
+             `;
+             const grid = row.querySelector(".swatches");
+         
+             g.steps.forEach((step) => {
+               const cssVar = varName(g.key, step);
+               const value = getCssVar(cssVar);
+         
+               if (!value) missingCount++;
+         
+               const sw = document.createElement("div");
+               sw.className = "swatch";
+         
+               const chipBg = value || "linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.02))";
+               const showValue = value || "(missing)";
+         
+               sw.innerHTML = `
+                 <div class="chip" style="background:${chipBg}"></div>
+                 <div class="metaBlock">
+                   <div class="nameLine">
+                     <span>${g.label} ${step}</span>
+                     <code>${escapeHtml(cssVar)}</code>
+                   </div>
+                   <div class="pillRow">
+                     <div class="pill" role="button" tabindex="0" data-copy="${escapeHtml(showValue)}">
+                       <span>${escapeHtml(showValue)}</span>
+                       <small>copy hex</small>
+                     </div>
+                     <div class="pill" role="button" tabindex="0" data-copy="${escapeHtml(`var(${cssVar})`)}">
+                       <span>${escapeHtml(`var(${cssVar})`)}</span>
+                       <small>copy CSS var</small>
+                     </div>
+                   </div>
+                 </div>
+               `;
+         
+               sw.querySelectorAll(".pill").forEach((pill) => {
+                 pill.addEventListener("click", () => copyToClipboard(pill.dataset.copy));
+                 pill.addEventListener("keydown", (e) => {
+                   if (e.key === "Enter" || e.key === " ") copyToClipboard(pill.dataset.copy);
+                 });
+               });
+         
+               grid.appendChild(sw);
+             });
+         
+             paletteEl.appendChild(row);
+           });
+         
+          //  if (missingCount > 0) {
+          //    metaEl.innerHTML = `Loaded tokens from <code>${escapeHtml(loadedUrl)}</code>. Missing values: <b>${missingCount}</b> (step list may not match published tokens).`;
+          //  } else {
+          //    metaEl.innerHTML = `Loaded tokens from <code>${escapeHtml(loadedUrl)}</code>.`;
+          //  }
+         }
+         
+         function buildAllPrimitivesCss() {
+           let out = ":root {\n";
+           GROUPS.forEach((g) => {
+             g.steps.forEach((step) => {
+               const name = varName(g.key, step);
+               const value = getCssVar(name);
+               if (value) out += `  ${name}: ${value};\n`;
+             });
+           });
+           out += "}\n";
+           return out;
+         }
+         
+         // Load tokens CSS from npm via CDN.
+         const CANDIDATE_CSS_URLS = [
+           "https://unpkg.com/highsoft-design-tokens@latest/dist/css/tokens.css",
+           "https://unpkg.com/highsoft-design-tokens@latest/dist/css/tokens",
+           "https://cdn.jsdelivr.net/npm/highsoft-design-tokens@latest/dist/css/tokens.css",
+           "https://cdn.jsdelivr.net/npm/highsoft-design-tokens@latest/dist/css/tokens",
+         ];
+         
+         async function loadStylesheet(url) {
+           return new Promise((resolve, reject) => {
+             const link = document.createElement("link");
+             link.rel = "stylesheet";
+             link.href = url;
+             link.onload = () => resolve(url);
+             link.onerror = () => reject(new Error("Failed to load " + url));
+             document.head.appendChild(link);
+           });
+         }
+         
+         async function init() {
+           // document.getElementById("copy-all-css").addEventListener("click", () => {
+           //   copyToClipboard(buildAllPrimitivesCss());
+           // });
+         
+           let loadedUrl = null;
+           for (const url of CANDIDATE_CSS_URLS) {
+             try {
+               loadedUrl = await loadStylesheet(url);
+               break;
+             } catch (_) {}
+           }
+         
+           if (!loadedUrl) {
+             statusEl.textContent = "Couldn't load tokens from CDN";
+             metaEl.innerHTML = `
+               This page expects token CSS from <code>highsoft-design-tokens</code>.
+               If you're using a build tool, import it like:
+               <code>@import "highsoft-design-tokens/dist/css/tokens";</code>
+             `;
+             return;
+           }
+         
+           statusEl.textContent = "Color tokens loaded from npm ✅";
+           statusEl.title = loadedUrl;
+           renderPalette(loadedUrl);
+         }
+         
+         init();
+      </script>
+   </body>
+</html>
