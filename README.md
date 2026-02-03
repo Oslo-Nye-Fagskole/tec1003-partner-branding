@@ -7,11 +7,7 @@ The purpose of this repository is to make approved partner branding easily acces
 to students while ensuring consistent and correct usage across course projects.
 
 ## Scope of Use
-- **TEC1003 course-related work only**
-- **Educational, non-commercial use**
+- TEC1003 course-related work only
+- Educational, non-commercial use
 - For enrolled students and teaching staff
-
-## Repository Structure
-Each partner has a dedicated directory containing their branding assets and any
-usage guidance provided by the partner.
 
